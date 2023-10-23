@@ -36,19 +36,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         String inputMathLine;
         boolean err = true;
         Scanner scanner = new Scanner(System.in);
 
         do {
             inputMathLine = scanner.nextLine();
-            System.out.println(parseMahLine(inputMathLine));
+            System.out.println(calc(inputMathLine));
         } while (err);
         scanner.close();
     }
 
-    private static String parseMahLine(String inputLine) {
+    private static String calc(String input) {
         String parsedString;
         String firstOperand;
         String secondOperand;
@@ -61,10 +60,14 @@ public class Main {
         boolean firstOperandType; // true - arabic, false - roman
         boolean secondOperandType;
 
-        String[] lineParts = inputLine.split(" ");
+        String[] lineParts = input.split(" ");
 
         if (lineParts.length <= 2) {
-            throw new IllegalArgumentException(inputLine + " cannot be parsed");
+            throw new IllegalArgumentException(input + " cannot be parsed");
+        }
+
+        if (lineParts.length > 3) {
+            throw new IllegalArgumentException(input + " incorrect task");
         }
 
         firstOperand = lineParts[0];
